@@ -17,15 +17,13 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('name');
             $table->foreignId('ms_komparteman_id')
-            ->references('ms_komparteman_id')
+            ->references('ms_komparteman_id')->nullable()
             ->on('ms_kompartemen') // Automatically references 'id' column
-            ->onDelete('cascade')
-            ->nullable();
-            $table->foreignId('ms_departeman_id')
+            ->onDelete('cascade');
+            $table->foreignId('ms_departeman_id')->nullable()
             ->references('ms_departeman_id')
             ->on('ms_departemen') // Automatically references 'id' column
-            ->onDelete('cascade')
-            ->nullable();
+            ->onDelete('cascade');
             $table->string('npk')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('password');
