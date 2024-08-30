@@ -26,8 +26,16 @@
                 <DxColumn data-field="handphone" caption="Handphone"  alignment="center"></DxColumn>
                 <DxColumn data-field="keperluan" caption="Keperluan"  alignment="center"></DxColumn>
                 <DxColumn data-field="tujuan" caption="Tujuan"  alignment="center"></DxColumn>
-                <DxColumn data-field="ms_komparteman_id" caption="Kompartemen"  alignment="center"></DxColumn>
-                <DxColumn data-field="ms_departeman_id" caption="Departemen"  alignment="center"></DxColumn>
+                <DxColumn data-field="ms_komparteman_id" caption="Kompartemen"  alignment="center" cell-template="kompartemen"></DxColumn>
+                <template #kompartemen="{ data }">
+                    <span v-if="data.data.kompartemen == null">-</span>
+                    <span v-else>{{ data.data.kompartemen.nama_kompartemen }}</span>
+                </template>
+                <DxColumn data-field="ms_departeman_id" caption="Departemen"  alignment="center" cell-template="departemen"></DxColumn>
+                <template #departemen="{ data }">
+                    <span v-if="data.data.departemen == null">-</span>
+                    <span v-else>{{ data.data.departemen.nama_departemen }}</span>
+                </template>
                 <DxColumn data-field="durasi" caption="Durasi"  alignment="center"></DxColumn>
                 <DxColumn data-field="tanggal" caption="Tanggal"  alignment="center"></DxColumn>
                 <DxColumn data-field="jpemohon" caption="Jumlah Pemohon"  alignment="center"></DxColumn>
