@@ -26,8 +26,8 @@ class User extends Authenticatable
         'username',
         'name',
         'npk',
-        'kompartemen',
-        'departemen',
+        'ms_komparteman_id',
+        'ms_departeman_id',
         'email',
         'password',
         'is_active',
@@ -135,6 +135,16 @@ class User extends Authenticatable
     public function searchableFormatRecord($record): string
     {
         return $record->npk . ' - ' . $record->name;
+    }
+
+    public function kompartemen()
+    {
+        return $this->belongsTo(Komparteman::class, 'ms_komparteman_id');
+    }
+
+    public function departemen()
+    {
+        return $this->belongsTo(Departeman::class, 'ms_departeman_id');
     }
 
     /**
