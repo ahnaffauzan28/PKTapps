@@ -40,7 +40,7 @@ class UserController extends Controller
     }
     public function dataProcessing(Request $request)
     {
-        $loadData = User::with(['roles'])->select('*');
+        $loadData = User::with(['roles', 'departemen', 'kompartemen'])->select('*');
         $loadDataDx = DxAdapter::load($loadData);
         return DxResponse::json($loadDataDx, $request);
     }
@@ -56,7 +56,7 @@ class UserController extends Controller
             $user = User::create($validated);
             // dd($validated);
             $user->syncRoles($validated['role']);
-           dd($request->all());
+        //    dd($request->all());
             DB::commit();
             return redirect()->back()->with('message', 'Success to create user');
         } catch (\Throwable $e) {
