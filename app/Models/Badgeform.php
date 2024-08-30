@@ -48,4 +48,14 @@ class Badgeform extends Model
         return $this->hasMany(Tambahidentitum::class, 'tr_badgeform_id');
     }
 
+    public function kompartemen()
+    {
+        return $this->belongsTo(Komparteman::class, 'ms_komparteman_id');
+    }
+
+    public function departemen()
+    {
+        return $this->belongsTo(Departeman::class, 'ms_departeman_id');
+    }
+
 }
