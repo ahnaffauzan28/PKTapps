@@ -29,8 +29,16 @@
                 <DxColumn data-field="username" caption="Username" :allowHeaderFiltering="false" />
                 <DxColumn data-field="npk" caption="NPK" :allowHeaderFiltering="false" />
                 <DxColumn data-field="name" caption="Nama" :allowHeaderFiltering="false" />
-                <DxColumn data-field="ms_komparteman_id" caption="Kompartemen" :allowHeaderFiltering="false" />
-                <DxColumn data-field="ms_departeman_id" caption="Departemen" :allowHeaderFiltering="false" />
+                <DxColumn data-field="ms_komparteman_id" caption="Kompartemen" :allowHeaderFiltering="false" cell-template="kompartemen" alignment="center"/>
+                <template #kompartemen="{ data }">
+                    <span v-if="data.data.kompartemen == null">-</span>
+                    <span v-else>{{ data.data.kompartemen.nama_kompartemen }}</span>
+                </template>
+                <DxColumn data-field="ms_departeman_id" caption="Departemen" :allowHeaderFiltering="false" cell-template="departemen" alignment="center"/>
+                <template #departemen="{ data }">
+                    <span v-if="data.data.departemen == null">-</span>
+                    <span v-else>{{ data.data.departemen.nama_departemen }}</span>
+                </template>
                 <DxColumn data-field="email" caption="Email" :allowHeaderFiltering="false" />
                 <DxColumn caption="Role" cell-template="role" width="200" :allowExporting="false" />
                 <template #role="{ data }">
