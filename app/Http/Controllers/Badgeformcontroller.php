@@ -112,28 +112,28 @@ class Badgeformcontroller extends Controller
     $loadData = null;
 
     if ($user->hasRole(['Dataadmin', 'Superadmin'])) {
-        $loadData = Badgeform::select('*');
+        $loadData = Badgeform::with(['departemen', 'kompartemen'])->select('*');
     } elseif ($user->hasRole(['AVP'])) {
-        $loadData = Badgeform::where('status', '1')
+        $loadData = Badgeform::with(['departemen', 'kompartemen'])->where('status', '1')
             ->where('ms_departeman_id', $user->ms_departeman_id)
             ->select('*');
     } elseif ($user->hasRole(['VP'])) {
-        $loadData = Badgeform::where('status', '2')
+        $loadData = Badgeform::with(['departemen', 'kompartemen'])->where('status', '2')
         ->where('ms_departeman_id', $user->ms_departeman_id)
             ->select('*');
     } elseif ($user->hasRole(['SVPoperasi'])) {
-        $loadData = Badgeform::where('status', '3')
+        $loadData = Badgeform::with(['departemen', 'kompartemen'])->where('status', '3')
             ->whereIn('tujuan', [
                 'Zona 1 (Pemeliharaan, Lab, Istek 1&2, Bengkel, Pabrik 1-7, PPE, Dermaga)',
                 'Zona 2 (JPP, Shiping, Plant Off Site, Pertagas, KIE, Dermaga, K3)'
             ])
             ->select('*');
     } elseif ($user->hasRole(['VPkeamanan'])) {
-        $loadData = Badgeform::where('status', '4')
+        $loadData = Badgeform::with(['departemen', 'kompartemen'])->where('status', '4')
             ->select('*');
         
         // Jika Anda ingin memeriksa dua kondisi berbeda untuk 'VPkeamanan'
-        $alternativeLoadData = Badgeform::where('status', '3')
+        $alternativeLoadData = Badgeform::with(['departemen', 'kompartemen'])->where('status', '3')
             ->whereIn('tujuan', [
                 'Kantor Pusat (Humas, Keuangan, TJSL, PSDMO)',
                 'Kaltim Daya Mandiri. PT', 
